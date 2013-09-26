@@ -9,12 +9,17 @@ shopt -s histappend
 #allows color in the terminal
 export CLICOLOR=1
 
-# add my own scripts folder to path after everything else
-PATH="${PATH}:~/scripts"
-export PATH
+#put whatever name you want for your machine before the : by writing it in .name
+if [ -f ~/.name ]; then 
+  name=$(cat ~/.name)
+else
+  name=$(echo '')
+fi
 
 #Modifies the prompt
-export PS1="\e[0;32m[\w]\$ \e[m "
+green=$(tput setaf 2)
+reset=$(tput sgr0)
+PS1='\[$green\][$name:\w]\$\[$reset\] '
 
 #Mac ls colors
 export LSCOLORS=GxFxCxDxBxegedabagaced
@@ -28,6 +33,10 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 # alias fgrep='fgrep --color=auto'
 # alias egrep='egrep --color=auto'
 
+
+# add my own scripts folder to path after everything else
+PATH="${PATH}:~/scripts"
+export PATH
 
 #adds mark jump command to terminal
 source ~/.marksrc
