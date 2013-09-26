@@ -1,0 +1,135 @@
+"personal
+
+" set leader key to space -> easiest key to hit!
+let mapleader=" " 
+
+"disable autocomplete which is mapped to contorl p
+let g:acp_enableStartup = 0
+
+"escape from any setting
+map <C-p> <Esc>
+
+" get shift tab to map to S-tab
+map <Esc>[Z <S-tab>
+ounmap <Esc>[Z
+
+"quick escape 
+imap jj <Esc>
+" quick save and quit in insert mode
+imap ZZ <Esc>:wq<CR>
+
+"save and run current file as python script
+nmap <Leader>rp :w<CR>:!python %<CR>
+
+"quick save, force save, save all
+nmap <Leader>w :w<CR>
+nmap <Leader>W :w!<CR>
+nmap <Leader>a :wa<CR>
+
+" delete the buffer
+"nmap <Leader>q :bd<CR>
+" close the window
+nmap <Leader>q :q<CR>
+nmap <Leader>Q :q<CR>
+
+" toggle numbers and paste mode
+nmap <Leader>n :set number!<CR>
+nmap <Leader>p :set paste!<CR>
+
+"correct Y behavior (yank to EOL like C or D)
+nmap Y y$
+
+" frankly I can't remember
+nnoremap j gj
+nnoremap k gk
+
+"clear search hilight
+nmap <silent> <Leader>/ :nohlsearch<CR>
+
+"tabbing in visual mode
+vnoremap < <gv
+vnoremap > >gv
+
+"fast scroll
+nnoremap <C-y> 3<C-y>
+nnoremap <C-e> 3<C-e>
+
+"browse buffers
+nmap <Leader>b :ls<CR>:b 
+
+"intuitive folding
+nmap zl zO 
+nmap zh zC
+
+" tab navigation like firefox
+:nmap <C-S-tab> :tabprevious<CR>
+:nmap <C-tab> :tabnext<CR>
+:nmap <C-t> :tabnew<CR>
+
+" change windows
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-l> :wincmd l<CR>
+
+" new frame from window
+nmap <C-w>h :topleft  vnew<CR>
+nmap <C-w>l :botright vnew<CR>
+nmap <C-w>k :topleft  new<CR>
+nmap <C-w>j :botright new<CR>
+
+" new frame from frame
+nmap <C-f>h :leftabove  vnew<CR>
+nmap <C-f>l :rightbelow vnew<CR>
+nmap <C-f>k :leftabove  new<CR>
+nmap <C-f>j :rightbelow new<CR>
+
+" netrw
+nmap <Leader>o :e.<CR>
+nmap <Leader>O :E.<CR>
+
+" general
+set hidden
+set history=1000
+set virtualedit=onemore
+set nospell
+
+" ui
+set background=dark
+" colorscheme wombat256mod
+set guifont=Consolas:h9:cANSI
+set showmode
+
+set ruler
+set number
+set showmatch
+
+" searching
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+" navigation
+set whichwrap=b,s,h,l,<,>,[,]
+set scrolljump=5
+set scrolloff=3
+set gdefault
+
+" tab formatting
+set shiftwidth=2
+set smarttab
+set softtabstop=2
+set expandtab
+set tabstop=2
+set autoindent
+
+" syntax and folding
+syntax enable
+set pastetoggle=<F12>
+set foldmethod=syntax
+
+" correctly interpret file types
+au BufNewFile,BufRead *.pde set filetype=c
+au BufNewFile,BufRead *.pic set filetype=ibasic
+au BufNewFile,BufRead *.bas set filetype=ibasic

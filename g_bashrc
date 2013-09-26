@@ -1,0 +1,33 @@
+#this file should be called .bashrc
+
+#ignore hisotry repeats
+export HISTCONTROL=ignoredups:ignorespace
+
+#append to bash history if termianl quits
+shopt -s histappend
+
+#allows color in the terminal
+export CLICOLOR=1
+
+# add my own scripts folder to path after everything else
+PATH="${PATH}:~/scripts"
+export PATH
+
+#Modifies the prompt
+export PS1="\e[0;32m[\w]\$ \e[m "
+
+#Mac ls colors
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
+#Linux ls colors + more
+# alias ls='ls --color=auto'
+# alias dir='dir --color=auto'
+# alias vdir='vdir --color=auto'
+
+# alias grep='grep --color=auto'
+# alias fgrep='fgrep --color=auto'
+# alias egrep='egrep --color=auto'
+
+
+#adds mark jump command to terminal
+source ~/.marksrc
