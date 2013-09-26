@@ -1,13 +1,11 @@
-"personal
-
 " set leader key to space -> easiest key to hit!
 let mapleader=" " 
 
-"disable autocomplete which is mapped to contorl p
-let g:acp_enableStartup = 0
-
 "escape from any setting
 map <C-p> <Esc>
+
+"disable autocomplete which is mapped to contorl p
+let g:acp_enableStartup = 0
 
 " get shift tab to map to S-tab
 map <Esc>[Z <S-tab>
@@ -62,9 +60,10 @@ nmap zl zO
 nmap zh zC
 
 " tab navigation like firefox
-:nmap <C-S-tab> :tabprevious<CR>
-:nmap <C-tab> :tabnext<CR>
+:nmap <s-tab> :tabprevious<CR>
+:nmap <tab> :tabnext<CR>
 :nmap <C-t> :tabnew<CR>
+
 
 " change windows
 nmap <silent> <C-k> :wincmd k<CR>
@@ -124,10 +123,12 @@ set expandtab
 set tabstop=2
 set autoindent
 
+
+
 " syntax and folding
 syntax enable
 set pastetoggle=<F12>
-set foldmethod=syntax
+"set foldmethod=syntax
 
 " correctly interpret file types
 au BufNewFile,BufRead *.pde set filetype=c
