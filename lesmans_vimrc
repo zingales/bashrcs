@@ -2,7 +2,8 @@
 let mapleader=" " 
 
 "escape from any setting
-map <C-p> <Esc>
+imap <C-p> <Esc>
+vmap <C-p> <Esc>
 
 "disable autocomplete which is mapped to contorl p
 let g:acp_enableStartup = 0
