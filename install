@@ -1,0 +1,7 @@
+#! bash
+#create required directories if they doen't exist
+mkdir -p ~/scripts
+mkdir -p ~/.marks
+
+#move all files except profile to home dir
+
