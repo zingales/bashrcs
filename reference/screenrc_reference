@@ -1,0 +1,52 @@
+# the following two lines give a two-line status, with the current window highlighted
+#hardstatus alwayslastline "%= %3n %t%? [%h]%? %="
+#caption always "%= %-w%L>%{= BW}%n*%t%{-}%52<%+w %L="
+
+
+hardstatus alwayslastline
+hardstatus string '%{= kG}[%{G}%H%? %1`%?%{g}][%= %{= kw}%-w%{+b yk} %n*%t%?(%u)%? %{-}%+w %=%{g}][%{B}%m/%d %{W}%C%A%{g}]'
+
+defscrollback 3000
+
+# default screens
+screen -t $       1
+screen -t $       2
+#screen -t $       3
+#screen -t $       4
+#screen -t $       5
+screen -t Python  1 python # put python at the end
+select 0
+
+bind c screen 1 # window numbering starts at 1 not 0
+bind 0 select 10
+
+# control-left and control-right switch windows
+bindkey "^[[5D" prev
+bindkey "^[[5C" next
+
+# f1-8 switch to those windows (OSX keeps 9-12 reserved for dashboard)
+bindkey "^[OP" select 1
+bindkey "^[OQ" select 2
+bindkey "^[OR" select 3
+bindkey "^[OS" select 4
+bindkey "^[[15~" select 5
+bindkey "^[[17~" select 6
+bindkey "^[[18~" select 7
+bindkey "^[[19~" select 8
+
+backtick 1 60 60 $HOME/bin/condor_short_status
+
+
+# get rid of silly xoff stuff
+bind s split
+
+# navigating regions
+bind j focus down
+bind k focus up
+bind h focus left
+bind l focus right
+
+# resizing regions
+bind + resize +5
+bind - resize -5
+bind = resize =

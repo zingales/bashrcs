@@ -1,0 +1,34 @@
+shell -${SHELL}
+vbell off
+
+autodetach on
+defscrollback 1024
+startup_message off
+hardstatus on
+
+hardstatus alwayslastline "%{=}%-w%{+b w}%n %t%{-b w}%+w %=%c"
+#hardstatus string "%{.kW}%-w%{.W}%n %t%{-}%{=b kw}%?%+w%? %=%c %d/%m/%Y" #B&W & date&time
+
+screen -t "s1" 1
+screen -t "s4" 2
+bind c screen 1 # Window numbering starts at 1, not 0.
+bind 0 select 10 #make 0 ==10
+
+# control-left and control-right switch windows
+bindkey "^[[5D" prev
+bindkey "^[[5C" next
+
+
+# get rid of silly xoff stuff
+bind s split
+
+# navigating regions
+bind j focus down
+bind k focus up
+bind h focus left
+bind l focus right
+
+# resizing regions
+bind + resize +5
+bind - resize -5
+bind = resize =
