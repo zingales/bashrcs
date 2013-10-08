@@ -14,24 +14,25 @@ if ".DS_Store" in toInstallraw:
 	toInstallraw.remove(".DS_Store")
 toInstall = ["."+x for x in toInstallraw]
 
-
-print homedir
-print toInstall
-toMove = []
-
-for filename in os.listdir(homedir):
-	if filename in toInstall:
-		print "i exist", filename
-		toMove.append(filename)
-
 #genearte time as a string that can exist in a filder
 temp_name = time.ctime()
 temp_name = temp_name.replace(" ", '_')
 temp_name = temp_name.replace(":", "_")
+old_rcs = "oldrcs_" + temp_name
+
+# print homedir
+# print toInstall
+toMove = []
+
+for filename in os.listdir(homedir):
+	if filename in toInstall:
+		print "moving existant ", filename, " to " +old_rcs
+		toMove.append(filename)
+
+
 
 #genearte temporary folder name
 if toMove:
-	old_rcs = "oldrcs_" + temp_name
 	os.makedirs(old_rcs)
 
 for fileToMove in toMove:
@@ -39,4 +40,4 @@ for fileToMove in toMove:
 
 for fileToInstall in toInstallraw:
 	shutil.copy("files/"+fileToInstall, homedir+"/."+fileToInstall)
-print toMove
+# print toMove

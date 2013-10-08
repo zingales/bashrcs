@@ -13,7 +13,7 @@ map <Esc>[Z <S-tab>
 ounmap <Esc>[Z
 
 "quick escape 
-imap jj <Esc>
+"imap jj <Esc>
 
 " quick save and quit in insert mode
 "imap ZZ <Esc>:wq<CR>
