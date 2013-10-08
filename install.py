@@ -10,6 +10,8 @@ toInstallraw = []
 for (dirpath, dirnames, filenames) in walk("./files"):
     toInstallraw.extend(filenames)
 
+if ".DS_Store" in toInstallraw:
+	toInstallraw.remove(".DS_Store")
 toInstall = ["."+x for x in toInstallraw]
 
 
