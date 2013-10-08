@@ -9,18 +9,20 @@ hardstatus on
 hardstatus alwayslastline "%{=}%-w%{+b w}%n %t%{-b w}%+w %=%c"
 #hardstatus string "%{.kW}%-w%{.W}%n %t%{-}%{=b kw}%?%+w%? %=%c %d/%m/%Y" #B&W & date&time
 
-screen -t "s1" 1
-screen -t "s4" 2
+# Instead of Control-a, make the escape/command character be Control-space
+escape "^  "
+
+screen -t "bash" 1
+screen -t "vim" 2
 bind c screen 1 # Window numbering starts at 1, not 0.
 bind 0 select 10 #make 0 ==10
 
 # control-left and control-right switch windows
-bindkey "^[[5D" prev
-bindkey "^[[5C" next
-
+bindkey "^[[1;5C" next
+bindkey "^[[1;5D" prev
 
 # get rid of silly xoff stuff
-bind s split
+#bind s split
 
 # navigating regions
 bind j focus down
