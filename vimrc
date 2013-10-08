@@ -14,19 +14,35 @@ ounmap <Esc>[Z
 
 "quick escape 
 imap jj <Esc>
+
 " quick save and quit in insert mode
-imap ZZ <Esc>:wq<CR>
+"imap ZZ <Esc>:wq<CR>
 
 "save and run current file as python script
-nmap <Leader>rp :w<CR>:!python %<CR>
+"nmap <Leader>rp :w<CR>:!python %<CR>
 
-"quick save, force save, save all
+"quick save, force save, save all, reload 
 nmap <Leader>w :w<CR>
 nmap <Leader>W :w!<CR>
-nmap <Leader>a :wa<CR>
+nmap <Leader>r :e<CR>
+
+" all commands 
+nmap <Leader>aw :wa<CR>
+nmap <Leader>aq :wa<CR>
+nmap <Leader>ar :windo e<CR>
+
+
+
+"remap Shift h,j,k,l to smart things 
+noremap H ^
+noremap L $
+noremap J L
+noremap K H
+
 
 " delete the buffer
 "nmap <Leader>q :bd<CR>
+
 " close the window
 nmap <Leader>q :q<CR>
 nmap <Leader>Q :q<CR>
@@ -38,7 +54,7 @@ nmap <Leader>p :set paste!<CR>
 "correct Y behavior (yank to EOL like C or D)
 nmap Y y$
 
-" frankly I can't remember
+" is smart with word that wrap around
 nnoremap j gj
 nnoremap k gk
 
@@ -124,7 +140,8 @@ set expandtab
 set tabstop=2
 set autoindent
 
-
+" modify the word deliminiators
+set iskeyword-=_
 
 " syntax and folding
 syntax enable
