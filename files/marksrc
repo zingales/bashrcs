@@ -1,6 +1,4 @@
-#this file should be called .marksrc
 #This file creates functions in the terminal to jump to directories 
-#originally taken from http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 export MARKPATH=$HOME/.marks
 
 function jump { 

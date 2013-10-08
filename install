@@ -1,7 +1,8 @@
-#! bash
+#! /bin/bash
 #create required directories if they doen't exist
 mkdir -p ~/scripts
 mkdir -p ~/.marks
 
+python install.py
 #move all files except profile to home dir
 
