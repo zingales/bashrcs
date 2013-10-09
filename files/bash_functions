@@ -1,5 +1,14 @@
-#source http://thelucid.com/2012/01/04/naming-your-terminal-tabs-in-osx-lion/
+#get the branch name of the git project in the current directory
+function git-branch-name {
+  git symbolic-ref HEAD 2>/dev/null | cut -d"/" -f 3
+}
 
+#return modifified name or return nothing if no branch
+function git-branch-prompt {
+  local branch=`git-branch-name`
+  if [ $branch ]; then printf ":%s " $branch; fi
+} 
+#source http://thelucid.com/2012/01/04/naming-your-terminal-tabs-in-osx-lion/
 #rename tab (tabname "lama")
 function tabname {
   printf "\e]1;$1\a"

@@ -9,6 +9,9 @@ shopt -s histappend
 #allows color in the terminal
 export CLICOLOR=1
 
+#import my file with all bash functions
+source ~/.bash_functions
+
 #put whatever name you want for your machine before the : by writing it in .name
 if [ -f ~/.name ]; then 
   name=$(cat ~/.name)
@@ -16,17 +19,8 @@ else
   name=$(echo '')
 fi
 
-source ~/.bash_functions
-function git-branch-name {
-  git symbolic-ref HEAD 2>/dev/null | cut -d"/" -f 3
-}
-
-function git-branch-prompt {
-  local branch=`git-branch-name`
-  if [ $branch ]; then printf ":%s " $branch; fi
-} 
-
 #Modifies the prompt
+# 0=black, 1=red, 2=green, 3 = yellow, 4 = blue, 5 = purple, 6= light blue, anything else = white
 green=$(tput setaf 2)
 red=$(tput setaf 1)
 reset=$(tput sgr0)
