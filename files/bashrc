@@ -16,10 +16,23 @@ else
   name=$(echo '')
 fi
 
+function git-branch-name {
+  git symbolic-ref HEAD 2>/dev/null | cut -d"/" -f 3
+}
+
+function git-branch-prompt {
+  local branch=`git-branch-name`
+  if [ $branch ]; then printf ":%s " $branch; fi
+} 
+
 #Modifies the prompt
 green=$(tput setaf 2)
+red=$(tput setaf 1)
 reset=$(tput sgr0)
 PS1='\[$green\][$name:\w]\$\[$reset\] '
+
+#Add what git branch your on to your prompt
+#PS1='\[$green\][$name:\w]\[$red\]$(git-branch-prompt)\[$green\]\$\[$reset\] '
 
 #Mac ls colors
 export LSCOLORS=GxFxCxDxBxegedabagaced
