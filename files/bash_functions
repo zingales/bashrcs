@@ -1,0 +1,12 @@
+#source http://thelucid.com/2012/01/04/naming-your-terminal-tabs-in-osx-lion/
+
+#rename tab (tabname "lama")
+function tabname {
+  printf "\e]1;$1\a"
+}
+
+#rename window (winname "bobby")
+function winname {
+  printf "\e]2;$1\a"
+}
+
