@@ -36,8 +36,8 @@ nmap <Leader>ar :windo e<CR>
 "remap Shift h,j,k,l to smart things 
 noremap H ^
 noremap L $
-noremap J L
-noremap K H
+noremap J <C-D>
+noremap K <C-U>
 
 
 " delete the buffer
