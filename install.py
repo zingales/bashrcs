@@ -3,16 +3,22 @@ import time
 import shutil
 from os import walk
 
+#save
+#move
+#install 
+
 homedir = os.path.expanduser("~")+"/"
 
+to_ignore = ['.DS_Store']
 
 toInstallraw = []
 for (dirpath, dirnames, filenames) in walk("./files"):
     toInstallraw.extend(filenames)
 
-if ".DS_Store" in toInstallraw:
-	toInstallraw.remove(".DS_Store")
-toInstall = ["."+x for x in toInstallraw]
+for x in to_ignore:
+	if x in toInstallraw:
+		toInstallraw.remove(x)
+	toInstall = ["."+x for x in toInstallraw]
 
 #genearte time as a string that can exist in a filder
 temp_name = time.ctime()

@@ -6,3 +6,4 @@ mkdir -p ~/.marks
 python install.py
 #move all files except profile to home dir
 
+./git_config.sh
