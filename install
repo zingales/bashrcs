@@ -3,6 +3,13 @@
 mkdir -p ~/scripts
 mkdir -p ~/.marks
 
+if [ -f ~/.gat ]; then
+  git clone https://github.com/zingales/gat.git ~/.gat
+  cd ~/.gat;mv ex_gat_script ~/scripts/gat
+else
+  cd ~/.gat;git pull
+fi
+
 python install.py
 #move all files except profile to home dir
 
