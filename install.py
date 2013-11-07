@@ -3,47 +3,51 @@ import time
 import shutil
 from os import walk
 
-#save
-#move
-#install 
-
+#Global Vars
 homedir = os.path.expanduser("~")+"/"
-
 to_ignore = ['.DS_Store']
+toMove = [".gitconfig"]
 
-toInstallraw = []
-for (dirpath, dirnames, filenames) in walk("./files"):
-    toInstallraw.extend(filenames)
-
-for x in to_ignore:
-	if x in toInstallraw:
-		toInstallraw.remove(x)
-	toInstall = ["."+x for x in toInstallraw]
-
-#genearte time as a string that can exist in a filder
+#genearte time as a string that can exist as a folder name
 temp_name = time.ctime()
 temp_name = temp_name.replace(" ", '_')
 temp_name = temp_name.replace(":", "_")
-old_rcs = "oldrcs_" + temp_name
-
-# print homedir
-# print toInstall
-toMove = []
-
-for filename in os.listdir(homedir):
-	if filename in toInstall:
-		print "moving existant ", filename, " to " +old_rcs
-		toMove.append(filename)
+old_rcs = "oldrcs/" + temp_name
 
 
+def guarantee_folder(folder):
+	if not os.path.exists(folder):
+		os.makedirs(folder)
 
-#genearte temporary folder name
-if toMove:
-	os.makedirs(old_rcs)
+def save(filepath):
+	guarantee_folder(old_rcs)
+	print "copying existant ", filepath, " to " +old_rcs
+	name = os.path.basename(filepath).replace(".", "")
+	shutil.copy(filepath, old_rcs+"/"+name)
 
-for fileToMove in toMove:
-	shutil.move(homedir+fileToMove, old_rcs+"/"+fileToMove.replace(".",""))
+def install(filename):
+	shutil.copy("files/"+filename, homedir+"/."+filename)
 
-for fileToInstall in toInstallraw:
-	shutil.copy("files/"+fileToInstall, homedir+"/."+fileToInstall)
-# print toMove
+def run():
+	toInstallraw = []
+	for (dirpath, dirnames, filenames) in walk("./files"):
+	    toInstallraw.extend(filenames)
+
+	for x in to_ignore:
+		if x in toInstallraw:
+			toInstallraw.remove(x)
+
+	toCheck = ["."+x for x in toInstallraw]
+
+	for filename in os.listdir(homedir):
+		if filename in toCheck:
+			toMove.append(filename)
+		
+
+	for fileToMove in toMove:
+		save(homedir+fileToMove)
+
+	for fileToInstall in toInstallraw:
+		install(fileToInstall)
+
+run()
