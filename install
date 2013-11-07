@@ -1,5 +1,6 @@
 #! /bin/bash
 #create required directories if they doen't exist
+curdir=$(pwd)
 mkdir -p ~/scripts
 mkdir -p ~/.marks
 
@@ -9,6 +10,7 @@ if [ -f ~/.gat ]; then
 else
   cd ~/.gat;git pull
 fi
+cd $curdir
 
 python install.py
 #move all files except profile to home dir
