@@ -30,16 +30,16 @@ PS1='\[$green\][$name:\w]\$\[$reset\] '
 #PS1='\[$green\][$name:\w]\[$red\]$(git-branch-prompt)\[$green\]\$\[$reset\] '
 
 #Mac ls colors
-export LSCOLORS=GxFxCxDxBxegedabagaced
+#export LSCOLORS=GxFxCxDxBxegedabagaced
 
 #Linux ls colors + more
-# alias ls='ls --color=auto'
-# alias dir='dir --color=auto'
-# alias vdir='vdir --color=auto'
+alias ls='ls --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
 
-# alias grep='grep --color=auto'
-# alias fgrep='fgrep --color=auto'
-# alias egrep='egrep --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 
 # add my own scripts folder to path after everything else
