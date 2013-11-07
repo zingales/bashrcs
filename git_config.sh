@@ -1,5 +1,6 @@
 git config --global push.default upstream
 git config --global core.excludesfile ~/.gitignore_global
+git config --global branch.autosetupmerge true
 
 #Git coloring
 git config --global color.ui true
