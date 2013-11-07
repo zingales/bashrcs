@@ -21,14 +21,15 @@ imap jk <Esc>
 "save and run current file as python script
 "nmap <Leader>rp :w<CR>:!python %<CR>
 
-"quick save, force save, save all, reload 
+"quick: save, close, reload
 nmap <Leader>w :w<CR>
-nmap <Leader>W :w!<CR>
+nmap <Leader>q :q<CR>
 nmap <Leader>r :e<CR>
+"nmap <Leader>W :w!<CR>
 
 " all commands 
 nmap <Leader>aw :wa<CR>
-nmap <Leader>aq :wa<CR>
+nmap <Leader>aq :qa<CR>
 nmap <Leader>ar :windo e<CR>
 
 
@@ -42,10 +43,6 @@ noremap K <C-U>
 
 " delete the buffer
 "nmap <Leader>q :bd<CR>
-
-" close the window
-nmap <Leader>q :q<CR>
-nmap <Leader>Q :q<CR>
 
 " toggle numbers and paste mode
 nmap <Leader>n :set number!<CR>
