@@ -5,11 +5,11 @@ mkdir -p ~/scripts
 mkdir -p ~/.marks
 
 #ensure gat is up to date
-if [ -f ~/.gat ]; then
-  git clone https://github.com/zingales/gat.git ~/.gat
-else
+if [ -d ~/.gat ]; then
   cd ~/.gat
   git pull
+else
+  git clone https://github.com/zingales/gat.git ~/.gat
 fi
 cd ~/.gat
 cp ex_gat_script ~/scripts/gat
