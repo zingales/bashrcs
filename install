@@ -1,9 +1,23 @@
 #! /bin/bash
 #create required directories if they doen't exist
+curdir=$(pwd)
 mkdir -p ~/scripts
 mkdir -p ~/.marks
 
+#ensure gat is up to date
+if [ -f ~/.gat ]; then
+  git clone https://github.com/zingales/gat.git ~/.gat
+else
+  cd ~/.gat
+  git pull
+fi
+cd ~/.gat
+cp ex_gat_script ~/scripts/gat
+
+cd $curdir
+
+echo $curdir
+
 python install.py
-#move all files except profile to home dir
 
 ./git_config.sh
