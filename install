@@ -16,8 +16,6 @@ cp ex_gat_script ~/scripts/gat
 
 cd $curdir
 
-echo $curdir
-
 python install.py
 
 ./git_config.sh

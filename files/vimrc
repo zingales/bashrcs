@@ -140,6 +140,9 @@ set autoindent
 " modify the word deliminiators
 set iskeyword-=_
 
+"iterm magic lets mouse and scroll work
+set mouse=a
+
 " syntax and folding
 syntax enable
 set pastetoggle=<F12>
