@@ -29,10 +29,12 @@ PS1='\[$green\][$name:\w]\$\[$reset\] '
 #Add what git branch your on to your prompt
 #PS1='\[$green\][$name:\w]\[$red\]$(git-branch-prompt)\[$green\]\$\[$reset\] '
 
-#Mac ls colors
+### MAC ###
+# ls colors
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-#Linux ls colors + more
+###Linux###
+#ls colors + more
 # alias ls='ls --color=auto'
 # alias dir='dir --color=auto'
 # alias vdir='vdir --color=auto'
