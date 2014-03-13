@@ -12,10 +12,14 @@ else
   git clone https://github.com/zingales/gat.git ~/.gat
 fi
 cd ~/.gat
+
+#copy gat script to scripts folder
 cp ex_gat_script ~/scripts/gat
+
 
 cd $curdir
 
-python install.py
 
+#run the rest of the install script
+python install.py
 ./git_config.sh

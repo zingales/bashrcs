@@ -19,3 +19,8 @@ function winname {
   printf "\e]2;$1\a"
 }
 
+alias la='ls -a'
+alias ll='ls -l'
+alias lla='ls -al'
+#the update command you want
+alias gu='git add -u'
