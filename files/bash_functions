@@ -23,4 +23,6 @@ alias la='ls -a'
 alias ll='ls -l'
 alias lla='ls -al'
 #the update command you want
-alias gu='git add -u'
+alias gs='git status'
+alias gu='git add -u;gs'
+alias ..='cd ..'
