@@ -50,4 +50,5 @@ def run():
 	for fileToInstall in toInstallraw:
 		install(fileToInstall)
 
-run()
+if __name__ == "__main__":
+	run()
