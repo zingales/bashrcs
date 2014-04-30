@@ -24,5 +24,7 @@ alias ll='ls -l'
 alias lla='ls -al'
 #the update command you want
 alias gs='git status'
-alias gu='git add -u;gs'
+#if you just want to update everything in the folder 
+#alias gu='git add -u .;gs'
+alias gu='git add -u :/;gs'
 alias ..='cd ..'
