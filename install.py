@@ -25,13 +25,14 @@ def save(filepath):
 	name = os.path.basename(filepath).replace(".", "")
 	shutil.copy(filepath, old_rcs+"/"+name)
 
-def install(filename):
-	shutil.copy("files/"+filename, homedir+"/."+filename)
+def install(filename, dest=homedir):
+	shutil.copy("files/"+filename, dest+"/."+filename)
 
 def run():
 	toInstallraw = []
 	for (dirpath, dirnames, filenames) in walk("./files"):
-	    toInstallraw.extend(filenames)
+	    if (dirpath == "./files"):
+        	toInstallraw.extend(filenames)
 
 	for x in to_ignore:
 		if x in toInstallraw:
