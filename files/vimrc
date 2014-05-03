@@ -110,6 +110,7 @@ set nospell
 " ui
 set background=dark
 " colorscheme wombat256mod
+colorscheme grb
 set guifont=Consolas:h9:cANSI
 set showmode
 
