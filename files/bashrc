@@ -1,4 +1,5 @@
 #this file should be called .bashrc
+#something in this files interferes with rsync. I should fix that
 
 
 ###### Constants And Such ######
