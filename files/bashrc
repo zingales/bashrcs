@@ -84,7 +84,7 @@ fi
 #Add what git branch your on to your prompt
 #PS1='\[$green\][$name:\w]\[$red\]$(git-branch-prompt)\[$green\]\$\[$reset\] '
 
-export PS1="\[${BOLD}${MAGENTA}\]$name \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n \[$WHITE\]\#: $symbol\[$RESET\]"
+export PS1="\[${BOLD}${MAGENTA}\]$name \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n \[$WHITE\]$symbol\[$RESET\]"
 export PS2="\[$ORANGE\]→ \[$RESET\]"
 
 #Mac ls colors
