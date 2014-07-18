@@ -96,3 +96,7 @@ export PATH
 
 #adds mark jump command to terminal
 source ~/.marksrc
+
+# the command stored in PROMPT_COMMAND in this variable is run each time the prompt is printed
+# this specific command changes the tab name to th current directory
+# export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'

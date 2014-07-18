@@ -23,6 +23,7 @@ function winname {
 function parse_git_dirty() {
 	[[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
 }
+
 function parse_git_branch() {
 	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
@@ -35,7 +36,11 @@ alias gs='git status'
 alias gd='git diff'
 alias gp='git pull '
 alias gg='git grep '
+
 #if you just want to update everything in the folder 
 #alias gu='git add -u .;gs'
 alias gu='git add -u :/;gs'
 alias ..='cd ..'
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
