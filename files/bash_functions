@@ -40,6 +40,11 @@ alias gg='git grep '
 #if you just want to update everything in the folder 
 #alias gu='git add -u .;gs'
 alias gu='git add -u :/;gs'
+
+#opens vim in folder view in the current folder
+alias v='vim .'
+
+#moving around alias
 alias ..='cd ..'
 alias ...="cd ../.."
 alias ....="cd ../../.."
