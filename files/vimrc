@@ -100,6 +100,10 @@ nmap <C-f>j :rightbelow new<CR>
 " netrw
 nmap <Leader>o :e.<CR>
 nmap <Leader>O :E.<CR>
+" case insensitive
+let g:netrw_sort_options = "i"
+"change sorting sequence 
+" newrw_sort_sequence = 
 
 " general
 set hidden
