@@ -1,0 +1,6 @@
+#! /bin/bash
+# ssh into machine then attaches to session name, if it doesn't exist create it
+# $1 = ssh host
+# $2 = optional tmux session name
+SCREENSESH=${2:-main}
+ssh $1 -t "tmux attach-session -t \"$SCREENSESH\" || tmux new -s \"$SCREENSESH\""
