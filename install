@@ -28,3 +28,9 @@ cd $curdir
 #run the rest of the install script
 python install.py
 ./git_config.sh
+
+#if there is an executable called personalize.sh it will run t
+#useful because sometimes there are user specific parameters that 
+#get blasted away during saving (for example git username / password)
+[ -x personalize.sh ]
+  ./personalize.sh
