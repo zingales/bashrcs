@@ -5,7 +5,11 @@ mkdir -p ~/scripts
 mkdir -p ~/.marks
 mkdir -p ~/.vim/colors
 
+#install vim colors
 cp -R files/vim_colors/* ~/.vim/colors/
+
+#insatll scripts
+cp -R scripts/* ~/scripts/
 
 #ensure gat is up to date
 if [ -d ~/.gat ]; then

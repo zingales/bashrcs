@@ -21,6 +21,8 @@ def guarantee_folder(folder):
 
 def save(filepath):
 	guarantee_folder(old_rcs)
+	if not os.path.exists(filepath):
+		return 
 	print "copying existant ", filepath, " to " +old_rcs
 	name = os.path.basename(filepath).replace(".", "")
 	shutil.copy(filepath, old_rcs+"/"+name)
