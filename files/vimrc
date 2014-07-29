@@ -13,7 +13,7 @@ map <Esc>[Z <S-tab>
 ounmap <Esc>[Z
 
 "quick escape 
-imap jk <Esc>
+"imap jk <Esc>
 
 " quick save and quit in insert mode
 "imap ZZ <Esc>:wq<CR>
@@ -26,6 +26,10 @@ nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
 nmap <Leader>r :e<CR>
 "nmap <Leader>W :w!<CR>
+
+"save the next acions in the clipboard regiter, capitol allows you to append
+nmap <Leader>c "p
+nmap <Leader>C "P
 
 " all commands 
 nmap <Leader>aw :wa<CR>
@@ -63,8 +67,8 @@ vnoremap < <gv
 vnoremap > >gv
 
 "fast scroll
-nnoremap <C-y> 3<C-y>
-nnoremap <C-e> 3<C-e>
+"nnoremap <C-y> 3<C-y>
+"nnoremap <C-e> 3<C-e>
 
 "browse buffers
 nmap <Leader>b :ls<CR>:b 
@@ -72,6 +76,12 @@ nmap <Leader>b :ls<CR>:b
 "intuitive folding
 nmap zl zO 
 nmap zh zC
+"fold and all fold all folds
+"its caps becauze zj and zk jumps between folds
+nmap zK zR
+nmap zJ zM
+"everything starts unfolded
+au BufWinEnter * normal zR
 
 " tab navigation like firefox
 :nmap <s-tab> :tabprevious<CR>
@@ -151,9 +161,12 @@ set mouse=a
 " syntax and folding
 syntax enable
 set pastetoggle=<F12>
-"set foldmethod=syntax
+set foldmethod=syntax
 
 " correctly interpret file types
 au BufNewFile,BufRead *.pde set filetype=c
 au BufNewFile,BufRead *.pic set filetype=ibasic
 au BufNewFile,BufRead *.bas set filetype=ibasic
+
+"change folding color 
+hi Folded ctermbg=Black
