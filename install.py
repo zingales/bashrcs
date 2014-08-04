@@ -101,22 +101,5 @@ def run():
     for foldername in folders_to_install:
         install_folder(foldername, settings.get(foldername, {}))
 
-    # for x in to_ignore:
-    #   if x in toInstallraw:
-    #       toInstallraw.remove(x)
-
-    # toCheck = ["."+x for x in toInstallraw]
-
-    # for filename in os.listdir(homedir):
-    #   if filename in toCheck:
-    #       toMove.append(filename)
-        
-
-    # for fileToMove in toMove:
-    #   save(homedir+fileToMove)
-
-    # for fileToInstall in toInstallraw:
-    #   install(fileToInstall)
-
 if __name__ == "__main__":
     run()
