@@ -21,22 +21,31 @@ ounmap <Esc>[Z
 "save and run current file as python script
 "nmap <Leader>rp :w<CR>:!python %<CR>
 
+"if number of buffers = 1 quit vim, else unload buffer
+function! Quit()
+  if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    q
+  else
+    bd
+  endif
+endfunction
+
 "quick: save, close, reload
 nmap <Leader>w :w<CR>
-nmap <Leader>q :q<CR>
+nmap <Leader>q :call Quit()<CR>
 nmap <Leader>r :e<CR>
 "nmap <Leader>W :w!<CR>
 
-"save the next acions in the clipboard regiter, capitol allows you to append
-nmap <Leader>c "p
-nmap <Leader>C "P
 
 " all commands 
 nmap <Leader>aw :wa<CR>
 nmap <Leader>aq :qa<CR>
 nmap <Leader>ar :windo e<CR>
 
-
+"save the next acions in the clipboard regiter, capitol allows you to append
+" currently not working
+nmap <Leader>c "p
+nmap <Leader>C "P
 
 "remap Shift h,j,k,l to smart things 
 noremap H ^
