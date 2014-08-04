@@ -1,0 +1,11 @@
+{
+    "_comment" : "defualts: install_dir= ~, install name = .filename, save_original = true, to_ignore = false",
+    "vim_colors" : { 
+        "install_dir" : "~/vim/colors"
+    },
+    "scripts" : {
+        "install_dir" : "~/scripts"
+    },
+    "to_save" : [".gitconfig"],
+    "to_ignore" : [".DS_Store"]
+}
