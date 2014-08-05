@@ -60,7 +60,7 @@ def install_folder(foldername, folder_set):
 
     src_folder = "files/"+foldername
     for filename in os.listdir(src_folder):
-        shutil.copy(src_folder+"/"+filename, folder+filename)
+        shutil.copy(src_folder+"/"+filename, folder+'/'+filename)
 
 def run():
     settings = {}
