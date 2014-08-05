@@ -19,3 +19,5 @@ git config --global color.status.added "green"
 git config --global color.status.changed "yellow"
 git config --global color.status.untracked "cyan"
 git config --global color.status.branch "magenta"
+#---- Other options
+git config --global grep.linenumber true

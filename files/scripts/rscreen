@@ -1,0 +1,7 @@
+#! /bin/bash
+# ssh to machine runs screen command and attaches to that screen.
+# if that screen name doesn't exist it creates it
+# $1 = ssh hostname
+# $2 = optional screen name defaults to main
+SCREENSESH=${2:-main}
+ssh $1 -t screen -xRR $SCREENSESH
