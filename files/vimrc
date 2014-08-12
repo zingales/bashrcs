@@ -82,13 +82,16 @@ vnoremap > >gv
 "browse buffers
 nmap <Leader>b :ls<CR>:b 
 
-"intuitive folding
-nmap zl zO 
-nmap zh zC
+"folding I like
+nmap zl zo 
+nmap zh zc
+
+nmap zL zO
+nmap zH zC
 "fold and all fold all folds
 "its caps becauze zj and zk jumps between folds
-nmap zK zR
-nmap zJ zM
+nmap zK zM
+nmap zJ zR
 "everything starts unfolded
 au BufWinEnter * normal zR
 
@@ -170,7 +173,9 @@ set mouse=a
 " syntax and folding
 syntax enable
 set pastetoggle=<F12>
-set foldmethod=syntax
+"for python
+"set foldmethod=syntax
+set foldmethod=indent
 
 " correctly interpret file types
 au BufNewFile,BufRead *.pde set filetype=c
