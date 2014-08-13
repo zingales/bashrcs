@@ -1,5 +1,11 @@
 #this file should be called .bashrc
-#something in this files interferes with rsync. I should fix that
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
 
 
 ###### Constants And Such ######
