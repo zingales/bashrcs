@@ -29,26 +29,17 @@ Plugin 'bling/vim-airline'
 
 
 call vundle#end()            " required
+filetype plugin indent on    " required
+
 "plugin specfici commands
 "vim-ariline
 set laststatus=2
 let g:airline_powerline_fonts =1
 set encoding=utf-8
-"solarized
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+"sytanstic options
+let g:syntastic_always_populate_loc_list = 1
 
-" set leader key to space -> easiest key to hit!
+
 let mapleader=" " 
 
 "escape from any setting
