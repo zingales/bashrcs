@@ -1,11 +1,5 @@
 #this file should be called .bashrc
-
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-
+#something in this files interferes with rsync. I should fix that
 
 
 ###### Constants And Such ######
@@ -90,7 +84,7 @@ fi
 #Add what git branch your on to your prompt
 #PS1='\[$green\][$name:\w]\[$red\]$(git-branch-prompt)\[$green\]\$\[$reset\] '
 
-export PS1="\[${BOLD}${MAGENTA}\]$name \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n \[$WHITE\]$symbol\[$RESET\]"
+export PS1="\[${BOLD}${MAGENTA}\]$name \[$ORANGE\]in \[$GREEN\]\w\[$ORANGE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n \[$WHITE\]$symbol\[$RESET\]"
 export PS2="\[$ORANGE\]→ \[$RESET\]"
 
 #Mac ls colors
