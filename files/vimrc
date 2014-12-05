@@ -41,7 +41,7 @@ set encoding=utf-8
 let g:syntastic_always_populate_loc_list = 1 "when you have errors populates the list
 
 
-let mapleader=" " 
+let mapleader=" "
 
 "escape from any setting
 imap <C-p> <Esc>
@@ -54,7 +54,7 @@ vmap <C-p> <Esc>
 map <Esc>[Z <S-tab>
 ounmap <Esc>[Z
 
-"quick escape 
+"quick escape
 "imap jk <Esc>
 
 " quick save and quit in insert mode
@@ -85,7 +85,7 @@ nmap <Leader>r :e<CR>
 "nmap <Leader>W :w!<CR>
 
 
-" all commands 
+" all commands
 nmap <Leader>aw :wa<CR>
 nmap <Leader>aq :qa<CR>
 nmap <Leader>ar :windo e<CR>
@@ -95,7 +95,7 @@ nmap <Leader>ar :windo e<CR>
 nmap <Leader>c "p
 nmap <Leader>C "P
 
-"remap Shift h,j,k,l to smart things 
+"remap Shift h,j,k,l to smart things
 noremap H ^
 noremap L $
 noremap J <C-D>
@@ -106,12 +106,12 @@ noremap K <C-U>
 "nmap <Leader>n :set number!<CR>
 nmap <Leader>p :set paste!<CR>
 
-"" remaping some shortcuts i like 
+"" remaping some shortcuts i like
 " what shift j used to do
 noremap m :join<CR>
 " jump to matching bracket
 nmap <Leader>jb %
-" jump to next loc  
+" jump to next loc
 nmap <Leader>jn :lnext<CR>
 nmap <Leader>jp :lprevious<CR>
 
@@ -123,7 +123,9 @@ nnoremap j gj
 nnoremap k gk
 
 "clear search hilight
-nmap <silent> <Leader>/ :nohlsearch<CR>
+" this clears search history which is cleaner then disabling search
+" highlighting
+nmap <silent> <Leader>/ :let @/ = ""<CR>
 
 "tabbing in visual mode
 vnoremap < <gv
@@ -134,10 +136,10 @@ vnoremap > >gv
 "nnoremap <C-e> 3<C-e>
 
 "browse buffers
-nmap <Leader>b :ls<CR>:b 
+nmap <Leader>b :ls<CR>:b
 
 "folding I like
-nmap zl zo 
+nmap zl zo
 nmap zh zc
 
 nmap zL zO
@@ -178,8 +180,8 @@ nmap <Leader>o :Ex.<CR>
 nmap <Leader>O :e.<CR>
 " case insensitive
 let g:netrw_sort_options = "i"
-"change sorting sequence 
-" newrw_sort_sequence = 
+"change sorting sequence
+" newrw_sort_sequence =
 
 " general
 set hidden
@@ -241,5 +243,26 @@ au BufNewFile,BufRead *.pde set filetype=c
 au BufNewFile,BufRead *.pic set filetype=ibasic
 au BufNewFile,BufRead *.bas set filetype=ibasic
 
-"change folding color 
+"change folding color
 hi Folded ctermbg=Black
+
+
+"white spaces
+function ShowSpaces(...)
+  let @/='\v(\s+$)|( +\ze\t)'
+  let oldhlsearch=&hlsearch
+  if !a:0
+    let &hlsearch=!&hlsearch
+  else
+    let &hlsearch=a:1
+  end
+  return oldhlsearch
+endfunction
+
+function TrimSpaces() range
+  let oldhlsearch=ShowSpaces(1)
+  execute a:firstline.",".a:lastline."substitute ///gec"
+  let &hlsearch=oldhlsearch
+endfunction
+command -bar -nargs=? ShowSpaces call ShowSpaces(<args>)
+command -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
