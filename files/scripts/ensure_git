@@ -1,0 +1,14 @@
+#! /bin/bash
+# ensure_git directory clone_addreess
+# will make sure that directory exists and upto date otherwise clone it
+DIR=$1
+ADDR=$2
+mkdir -p $DIR && cd $DIR
+#this currently isn't particuarly sophisticated you could imagine 
+if [ -d .git ]; then
+  git pull;
+else
+  git clone $ADDR .;
+fi;
+#return where we started
+cd -

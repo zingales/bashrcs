@@ -1,0 +1,5 @@
+#! /bin/bash
+# create tmux session by name, if none given assume main
+# $1 = optional tmux session name
+SCREENSESH=${1:-main}
+tmux attach-session -t \"$SCREENSESH\" || tmux new -s \"$SCREENSESH\"

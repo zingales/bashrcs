@@ -5,9 +5,10 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'tpope/vim-fugitive'
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+
+Plugin 'tpope/vim-fugitive'
 
 "new color scheme
 Plugin 'altercation/vim-colors-solarized'
@@ -15,12 +16,10 @@ Plugin 'altercation/vim-colors-solarized'
 " helps open files, similar to command p in sublime
 Plugin 'git://git.wincent.com/command-t.git'
 
-"color scheme
-"Plugin 'altercation/vim-colors-solarized'
-
-
 " good autocomplete
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
+"Only if its a valid version of vim
+
 " better sytanx highlint
 Plugin 'scrooloose/syntastic'
 
@@ -31,13 +30,14 @@ Plugin 'bling/vim-airline'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-"plugin specfici commands
-"vim-ariline
+"plugin specific commands
+"vim-airline
 set laststatus=2
 let g:airline_powerline_fonts =1
 set encoding=utf-8
+
 "sytanstic options
-let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_always_populate_loc_list = 1 "when you have errors populates the list
 
 
 let mapleader=" " 
@@ -47,7 +47,7 @@ imap <C-p> <Esc>
 vmap <C-p> <Esc>
 
 "disable autocomplete which is mapped to contorl p
-let g:acp_enableStartup = 0
+"let g:acp_enableStartup = 0
 
 " get shift tab to map to S-tab
 map <Esc>[Z <S-tab>
@@ -100,7 +100,7 @@ noremap K <C-U>
 "nmap <Leader>q :bd<CR>
 
 " toggle numbers and paste mode
-nmap <Leader>n :set number!<CR>
+"nmap <Leader>n :set number!<CR>
 nmap <Leader>p :set paste!<CR>
 
 "correct Y behavior (yank to EOL like C or D)
