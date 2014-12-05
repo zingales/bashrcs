@@ -7,7 +7,7 @@
         "install_dir" : "~/scripts"
     },
     "vim_plugin" : {
-        "install_dir" "~/.vim/plugin"
+        "install_dir" : "~/.vim/plugin"
     },
     "to_save" : [".gitconfig"],
     "to_ignore" : [".DS_Store"]

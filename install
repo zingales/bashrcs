@@ -6,10 +6,13 @@ mkdir -p ~/.marks
 
 #run the rest of the install script
 python install.py
-
-#Run all scripts in install_scripts
-cd install_scripts
-for filename in *.sh; do
-  ./filename
-  cd $curdir
-done
+if [ $? -eq 0 ]; then
+    #Run all scripts in install_scripts
+    cd install_scripts
+    for file in *.sh; do
+      ./$file
+      cd $curdir/install_scripts
+    done
+  else
+    echo "Main Install Script failed"
+fi
