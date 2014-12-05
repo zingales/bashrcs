@@ -17,7 +17,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'git://git.wincent.com/command-t.git'
 
 " good autocomplete
-if v:version > 704
+if v:version > 703
   Plugin 'Valloric/YouCompleteMe'
 endif
 
@@ -62,7 +62,7 @@ ounmap <Esc>[Z
 
 "save and run current file as python script
 "nmap <Leader>rp :w<CR>:!python %<CR>
-if v:version > 704
+if v:version > 703
   "you complete me has a better goto definition than ctags
 else
   "set up shortcuts for ctags
@@ -102,12 +102,18 @@ noremap J <C-D>
 noremap K <C-U>
 
 
-" delete the buffer
-"nmap <Leader>q :bd<CR>
-
 " toggle numbers and paste mode
 "nmap <Leader>n :set number!<CR>
 nmap <Leader>p :set paste!<CR>
+
+"" remaping some shortcuts i like 
+" what shift j used to do
+noremap m :join<CR>
+" jump to matching bracket
+nmap <Leader>jb %
+" jump to next loc  
+nmap <Leader>jn :lnext<CR>
+nmap <Leader>jp :lprevious<CR>
 
 "correct Y behavior (yank to EOL like C or D)
 nmap Y y$
