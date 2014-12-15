@@ -6,12 +6,12 @@ CMD=$3
 INST=le_installed
 
 if [ -d $DIR ]; then
+  cd $DIR
   if [ -a $INST ]; then
-      echo $NAME "installed"
+      echo "$NAME installed"
   else
-      cd $DIR
       eval $CMD
       touch $INST
-      echo $NAME "installed"
+      echo "$NAME installed"
   fi;
 fi;

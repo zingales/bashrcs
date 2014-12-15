@@ -3,7 +3,7 @@ import time
 import shutil
 from os import walk
 import json
-import subproccess
+import subprocess
 
 #Global Vars
 homedir = os.path.expanduser("~")+"/"
@@ -18,10 +18,10 @@ old_rcs = ""
 
 
 def git_ensure(folder, url):
-    subproccess.Popen("git_ensure %s %s" % (folder, url) , stdout=PIPE)
+    subprocess.Popen("ensure_git %s %s" % (folder, url) , stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 
 def cd_install(name, folder, cmd, reinstall=False):
-    subproccess.Popen("./cd_install.sh %s %s %s" % (name, folder, cmd), stdout=PIPE)
+    subprocess.Popen("install_scripts/cd_install.sh %s %s %s" % (name, folder, cmd), stderr=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
 
 def guarantee_folder(folder):
     if folder == homedir:
