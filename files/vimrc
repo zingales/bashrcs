@@ -64,6 +64,7 @@ ounmap <Esc>[Z
 "nmap <Leader>rp :w<CR>:!python %<CR>
 if v:version > 703
   "you complete me has a better goto definition than ctags
+  let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 else
   "set up shortcuts for ctags
 endif
