@@ -3,6 +3,7 @@ import time
 import shutil
 from os import walk
 import json
+import subproccess
 
 #Global Vars
 homedir = os.path.expanduser("~")+"/"
@@ -16,6 +17,11 @@ to_ignore = []
 old_rcs = ""
 
 
+def git_ensure(folder, url):
+    subproccess.Popen("git_ensure %s %s" % (folder, url) , stdout=PIPE)
+
+def cd_install(name, folder, cmd, reinstall=False):
+    subproccess.Popen("./cd_install.sh %s %s %s" % (name, folder, cmd), stdout=PIPE)
 
 def guarantee_folder(folder):
     if folder == homedir:
@@ -26,7 +32,7 @@ def guarantee_folder(folder):
 def save(path, isFolder=False):
     guarantee_folder(old_rcs)
     if not os.path.exists(path):
-        return 
+        return
     print "copying existant ", path, " to " +old_rcs
     name = os.path.basename(path)
 
@@ -71,6 +77,7 @@ def run():
     temp_name = time.ctime()
     temp_name = temp_name.replace(" ", '_')
     temp_name = temp_name.replace(":", "_")
+
     global old_rcs
     old_rcs = "oldrcs/" + temp_name
 
@@ -85,10 +92,11 @@ def run():
     global to_ignore
     to_ignore = settings.get("to_ignore", [".DS_Store"])
 
+    ##### Copy Files and Folder #######
     #saving specific files not in ./files
     for original_file in settings.get("to_save", []):
         save(original_file)
-    
+
     #load all files and directores in ./files
     for (dirpath, dirnames, filenames) in walk("./files"):
         if (dirpath == "./files"):
@@ -100,6 +108,16 @@ def run():
 
     for foldername in folders_to_install:
         install_folder(foldername, settings.get(foldername, {}))
+    ##### End Copy Files and Folder #######
+
+    ##### Ensure Git / install ######
+    for cmds in settings.get('git_ensure', []):
+        git_ensure(cmds["folder"], cmds["url"])
+
+    for cmds in settings.get("cd_install", []):
+        cd_install(cmds["name"], cmds["folder"], '"' + cmds["cmd"]+'"')
+
+    ##### end Ensure Git / install ######
 
 if __name__ == "__main__":
     run()
