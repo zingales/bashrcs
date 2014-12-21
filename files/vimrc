@@ -65,8 +65,11 @@ ounmap <Esc>[Z
 if v:version > 703
   "you complete me has a better goto definition than ctags
   let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+  nmap <silent> <leader>jd :YcmCompleter GoTo<CR>
 else
   "set up shortcuts for ctags
+  nmap <silent> <leader>jd <C-J><CR>
+
 endif
 
 
@@ -77,6 +80,10 @@ function! Quit()
   else
     bd
   endif
+endfunction
+
+function! GenCtags()
+  ! ctags -R -f ./.git/tags .
 endfunction
 
 "quick: save, close, reload
@@ -190,7 +197,11 @@ set history=1000
 set virtualedit=onemore
 set nospell
 
-" ui
+"" ui
+"silent means it doesn't  complain if it doesn't exits
+silent! colorscheme gentoo
+silent! colorscheme solarized
+
 set background=dark
 "set guifont=Consolas:h9:cANSI
 "let g:solarized_visibility = "high"
@@ -198,7 +209,6 @@ set background=dark
 "let g:solarized_termtrans = 1
 "let g:solarized_termcolors=256
 
-colorscheme solarized
 
 set showmode
 
@@ -265,5 +275,6 @@ function TrimSpaces() range
   execute a:firstline.",".a:lastline."substitute ///gec"
   let &hlsearch=oldhlsearch
 endfunction
+
 command -bar -nargs=? ShowSpaces call ShowSpaces(<args>)
 command -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
