@@ -3,7 +3,7 @@
 NAME=$1
 DIR=$2
 CMD=$3
-INST=le_installed
+INST=".le_installed"
 
 if [ -d $DIR ]; then
   cd $DIR

@@ -3,12 +3,11 @@
 # will make sure that directory exists and upto date otherwise clone it
 DIR=$1
 ADDR=$2
-mkdir -p $DIR && cd $DIR
+
 #this currently isn't particuarly sophisticated you could imagine 
-if [ -d .git ]; then
+if [ -d $DIR/.git ]; then
   git pull;
 else
-  git clone $ADDR .;
+  git clone $ADDR $DIR;
 fi;
-#return where we started
-cd -
+echo "ensured $DIR"

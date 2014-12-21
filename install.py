@@ -7,6 +7,7 @@ import subprocess
 
 #Global Vars
 homedir = os.path.expanduser("~")+"/"
+installdir=os.path.dirname(os.path.abspath(__file__))
 # to_ignore = ['.DS_Store']
 # toMove = [".gitconfig"]
 
@@ -16,12 +17,22 @@ homedir = os.path.expanduser("~")+"/"
 to_ignore = []
 old_rcs = ""
 
+def _run_cmd(cmd):
+    try:
+        return subprocess.check_output(cmd , stderr=subprocess.STDOUT, shell=True)
+    except subprocess.CalledProcessError as e:
+        print e.output
+        raise
 
 def git_ensure(folder, url):
-    subprocess.Popen("ensure_git %s %s" % (folder, url) , stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+    print _run_cmd("~/scripts/ensure_git %s %s" % (folder, url))
+    #print subprocess.check_output, stderr=subprocess.STDOUT, shell=True)
+    pass
 
 def cd_install(name, folder, cmd, reinstall=False):
-    subprocess.Popen("install_scripts/cd_install.sh %s %s %s" % (name, folder, cmd), stderr=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
+    print _run_cmd(installdir+"/cd_install.sh %s %s %s" % (name, folder, cmd))
+    #print subprocess.check_output("install_scripts/cd_install.sh %s %s %s" % (name, folder, cmd), stderr=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
+    pass
 
 def guarantee_folder(folder):
     if folder == homedir:
