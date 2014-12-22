@@ -1,28 +1,18 @@
 #! /bin/bash
 #create required directories if they doen't exist
 curdir=$(pwd)
+
 mkdir -p ~/.marks
-
-#ensure gat is up to date
-if [ -d ~/.gat ]; then
-  cd ~/.gat
-  git pull
-else
-  git clone https://github.com/zingales/gat.git ~/.gat
-fi
-cd ~/.gat
-
-#copy gat script to scripts folder
-cp ex_gat_script ~/scripts/gat
-
-cd $curdir
 
 #run the rest of the install script
 python install.py
-./git_config.sh
-
-#if there is an executable called personalize.sh it will run t
-#useful because sometimes there are user specific parameters that 
-#get blasted away during saving (for example git username / password)
-[ -x personalize.sh ]
-  ./personalize.sh
+if [ $? -eq 0 ]; then
+    #Run all scripts in install_scripts
+    cd install_scripts
+    for file in *.sh; do
+      ./$file
+      cd $curdir/install_scripts
+    done
+  else
+    echo "Main Install Script failed"
+fi

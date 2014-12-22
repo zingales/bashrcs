@@ -2,6 +2,12 @@ git config --global push.default upstream
 git config --global core.excludesfile ~/.gitignore_global
 git config --global branch.autosetupmerge true
 
+#Git editor/tool choices
+git config --global core.editor "vim"
+git config merge.tool vimdiff
+git config merge.conflictstyle diff3
+git config diff.tool vimdiff
+
 #Git coloring
 git config --global color.ui true
 #---branch coloring

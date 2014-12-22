@@ -4,6 +4,9 @@
 
 ###### Constants And Such ######
 
+#workaround for scp
+if [ -z "$PS1" ]; then return; fi;
+
 ### Prompt Colors
 # Modified version of @gf3’s Sexy Bash Prompt
 # (https://github.com/gf3/dotfiles)
@@ -92,7 +95,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-export PS1="\[${BOLD}${MAGENTA}\]$name \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n \[$WHITE\]$symbol\[$RESET\]"
+export PS1="\[${BOLD}${MAGENTA}\]$name \[$ORANGE\]in \[$GREEN\]\w\[$ORANGE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n \[$WHITE\]$symbol\[$RESET\]"
 export PS2="\[$ORANGE\]→ \[$RESET\]"
 
 # add my own scripts folder to path after everything else

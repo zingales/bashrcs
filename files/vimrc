@@ -1,18 +1,60 @@
-" set leader key to space -> easiest key to hit!
-let mapleader=" " 
+"vim plugin manager
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'tpope/vim-fugitive'
+
+"new color scheme
+Plugin 'altercation/vim-colors-solarized'
+
+" helps open files, similar to command p in sublime
+Plugin 'git://git.wincent.com/command-t.git'
+
+" good autocomplete
+if v:version > 703
+  Plugin 'Valloric/YouCompleteMe'
+endif
+
+" better sytanx highlint
+Plugin 'scrooloose/syntastic'
+
+" cool command prompt
+Plugin 'bling/vim-airline'
+
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+"plugin specific commands
+"vim-airline
+set laststatus=2
+let g:airline_powerline_fonts =1
+set encoding=utf-8
+
+"sytanstic options
+let g:syntastic_always_populate_loc_list = 1 "when you have errors populates the list
+
+
+let mapleader=" "
 
 "escape from any setting
 imap <C-p> <Esc>
 vmap <C-p> <Esc>
 
 "disable autocomplete which is mapped to contorl p
-let g:acp_enableStartup = 0
+"let g:acp_enableStartup = 0
 
 " get shift tab to map to S-tab
 map <Esc>[Z <S-tab>
 ounmap <Esc>[Z
 
-"quick escape 
+"quick escape
 "imap jk <Esc>
 
 " quick save and quit in insert mode
@@ -20,6 +62,16 @@ ounmap <Esc>[Z
 
 "save and run current file as python script
 "nmap <Leader>rp :w<CR>:!python %<CR>
+if v:version > 703
+  "you complete me has a better goto definition than ctags
+  let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+  nmap <silent> <leader>jd :YcmCompleter GoTo<CR>
+else
+  "set up shortcuts for ctags
+  nmap <silent> <leader>jd <C-J><CR>
+
+endif
+
 
 "if number of buffers = 1 quit vim, else unload buffer
 function! Quit()
@@ -30,6 +82,10 @@ function! Quit()
   endif
 endfunction
 
+function! GenCtags()
+  ! ctags -R -f ./.git/tags .
+endfunction
+
 "quick: save, close, reload
 nmap <Leader>w :w<CR>
 nmap <Leader>q :call Quit()<CR>
@@ -37,7 +93,7 @@ nmap <Leader>r :e<CR>
 "nmap <Leader>W :w!<CR>
 
 
-" all commands 
+" all commands
 nmap <Leader>aw :wa<CR>
 nmap <Leader>aq :qa<CR>
 nmap <Leader>ar :windo e<CR>
@@ -47,19 +103,25 @@ nmap <Leader>ar :windo e<CR>
 nmap <Leader>c "p
 nmap <Leader>C "P
 
-"remap Shift h,j,k,l to smart things 
+"remap Shift h,j,k,l to smart things
 noremap H ^
 noremap L $
 noremap J <C-D>
 noremap K <C-U>
 
 
-" delete the buffer
-"nmap <Leader>q :bd<CR>
-
 " toggle numbers and paste mode
-nmap <Leader>n :set number!<CR>
+"nmap <Leader>n :set number!<CR>
 nmap <Leader>p :set paste!<CR>
+
+"" remaping some shortcuts i like
+" what shift j used to do
+noremap m :join<CR>
+" jump to matching bracket
+nmap <Leader>jb %
+" jump to next loc
+nmap <Leader>jn :lnext<CR>
+nmap <Leader>jp :lprevious<CR>
 
 "correct Y behavior (yank to EOL like C or D)
 nmap Y y$
@@ -69,7 +131,9 @@ nnoremap j gj
 nnoremap k gk
 
 "clear search hilight
-nmap <silent> <Leader>/ :nohlsearch<CR>
+" this clears search history which is cleaner then disabling search
+" highlighting
+nmap <silent> <Leader>/ :let @/ = ""<CR>
 
 "tabbing in visual mode
 vnoremap < <gv
@@ -80,15 +144,18 @@ vnoremap > >gv
 "nnoremap <C-e> 3<C-e>
 
 "browse buffers
-nmap <Leader>b :ls<CR>:b 
+nmap <Leader>b :ls<CR>:b
 
-"intuitive folding
-nmap zl zO 
-nmap zh zC
+"folding I like
+nmap zl zo
+nmap zh zc
+
+nmap zL zO
+nmap zH zC
 "fold and all fold all folds
 "its caps becauze zj and zk jumps between folds
-nmap zK zR
-nmap zJ zM
+nmap zK zM
+nmap zJ zR
 "everything starts unfolded
 au BufWinEnter * normal zR
 
@@ -117,12 +184,12 @@ nmap <C-f>k :leftabove  new<CR>
 nmap <C-f>j :rightbelow new<CR>
 
 " netrw
-nmap <Leader>o :e.<CR>
-nmap <Leader>O :E.<CR>
+nmap <Leader>o :Ex.<CR>
+nmap <Leader>O :e.<CR>
 " case insensitive
 let g:netrw_sort_options = "i"
-"change sorting sequence 
-" newrw_sort_sequence = 
+"change sorting sequence
+" newrw_sort_sequence =
 
 " general
 set hidden
@@ -130,11 +197,19 @@ set history=1000
 set virtualedit=onemore
 set nospell
 
-" ui
+"" ui
+"silent means it doesn't  complain if it doesn't exits
+silent! colorscheme gentoo
+silent! colorscheme solarized
+
 set background=dark
-" colorscheme wombat256mod
-colorscheme grb
-set guifont=Consolas:h9:cANSI
+"set guifont=Consolas:h9:cANSI
+"let g:solarized_visibility = "high"
+"let g:solarized_contrast = "high"
+"let g:solarized_termtrans = 1
+"let g:solarized_termcolors=256
+
+
 set showmode
 
 set ruler
@@ -170,12 +245,36 @@ set mouse=a
 " syntax and folding
 syntax enable
 set pastetoggle=<F12>
-set foldmethod=syntax
+"for python
+"set foldmethod=syntax
+set foldmethod=indent
 
 " correctly interpret file types
 au BufNewFile,BufRead *.pde set filetype=c
 au BufNewFile,BufRead *.pic set filetype=ibasic
 au BufNewFile,BufRead *.bas set filetype=ibasic
 
-"change folding color 
+"change folding color
 hi Folded ctermbg=Black
+
+
+"white spaces
+function ShowSpaces(...)
+  let @/='\v(\s+$)|( +\ze\t)'
+  let oldhlsearch=&hlsearch
+  if !a:0
+    let &hlsearch=!&hlsearch
+  else
+    let &hlsearch=a:1
+  end
+  return oldhlsearch
+endfunction
+
+function TrimSpaces() range
+  let oldhlsearch=ShowSpaces(1)
+  execute a:firstline.",".a:lastline."substitute ///gec"
+  let &hlsearch=oldhlsearch
+endfunction
+
+command -bar -nargs=? ShowSpaces call ShowSpaces(<args>)
+command -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()

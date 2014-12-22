@@ -9,7 +9,7 @@ if [ -z "$PS1" ]; then
 # break things like scp this is a slightly nuclear approach 
 # to ignore the entire bashrc but it's also the safest. One 
 # could go through and remove anything that prints to much
-        echo 
+        : 
 else
         if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
 fi

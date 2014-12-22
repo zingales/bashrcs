@@ -1,11 +1,47 @@
 {
     "_comment" : "defualts: install_dir= ~, install name = .filename, save_original = true, to_ignore = false",
-    "vim_colors" : { 
+    "vim_colors" : {
         "install_dir" : "~/.vim/colors"
     },
     "scripts" : {
         "install_dir" : "~/scripts"
     },
+    "vim_plugin" : {
+        "install_dir" : "~/.vim/plugin"
+    },
     "to_save" : [".gitconfig"],
-    "to_ignore" : [".DS_Store"]
+    "to_ignore" : [".DS_Store"],
+    "git_ensure" : [
+      {
+        "folder" : "~/.vim/bundle/Vundle.vim",
+        "url" : "https://github.com/gmarik/Vundle.vim.git"
+      }, {
+        "folder" : "~/.gat",
+        "url" : "https://github.com/zingales/gat.git"
+      }
+    ],
+    "cd_install" : [
+      {
+        "folder" : "~/.gat",
+        "cmd" : "cp ex_gat_script ~/scripts/gat",
+        "name" : "gat"
+      },
+      {
+        "folder" : "~/.vim/bundle/Vundle.vim",
+        "cmd" : "vim +PluginInstall +qall",
+        "force": true,
+        "name" : "vundle"
+      },
+      {
+        "folder" : "~/.vim/bundle/command-t/ruby/command-t",
+        "cmd" : "ruby extconf.rb && make",
+        "name" : "command"
+      },
+      {
+        "folder" : "~/.vim/bundle/YouCompleteMe",
+        "cmd" : "./install.sh --clang-completer",
+        "force": false,
+        "name" : "YouCompleteMe"
+      }
+    ]
 }
