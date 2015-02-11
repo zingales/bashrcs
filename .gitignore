@@ -2,3 +2,4 @@ oldrcs_*
 oldrcs/*
 */.git
 personalize.sh
+install_scripts/*

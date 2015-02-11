@@ -23,7 +23,7 @@ if [ $? -eq 0 ]; then
   #this machine has apt-get
   echo "We are going to sudo apt-get install some things"
   sudo apt-get update
-  sudo apt-get install `cat requirements/apt-get.txt | tr '\n' ' '`
+  sudo apt-get -y install `cat requirements/apt-get.txt | tr '\n' ' '`
 fi 
 
 #run the rest of the install script
