@@ -41,6 +41,8 @@ fi
 
 ls ~/.ssh/id_rsa.pub
 if [ $? -eq 0 ]; then
+  :
+else 
   #this machine doesn't have a key
   echo "We are going to generate a ssh keys"
   ssh-keygen
