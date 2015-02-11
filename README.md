@@ -1,11 +1,9 @@
 bashrcs
 =======
 
-Simple install script to get your computer set up and up to date. 
+A onestop shop for setting up your enviroment. You have to setup your installation script once. Then hopefully when you move to a different computer you have to run it once and your in buisness
 
 
 Installation
 ============
-if your computer does not have a ~/.bash_profile copy the bash_profile provided then run ./install
-
-in general if you put a file in files/filename it will install it at ~/.filename
+All it requires is for you to run ./install
