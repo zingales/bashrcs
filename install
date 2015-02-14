@@ -39,8 +39,7 @@ if [ $? -eq 0 ]; then
     echo "Main Install Script failed"
 fi
 
-ls ~/.ssh/id_rsa.pub
-if [ $? -eq 0 ]; then
+if [ -f ~/.ssh/id_rsa.pub ]; then
   :
 else 
   #this machine doesn't have a key
