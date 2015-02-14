@@ -31,9 +31,7 @@ if [ -d $DIR ]; then
   if [[ -a $INST && "$FORCE" = false ]] ; then
       echo "$NAME already installed"
   else
-      {cmd};
-      touch $INST
-      echo "$NAME (re)installed"
+      {cmd} && touch $INST && echo "$NAME (re)installed"
   fi;
 else
   echo "$NAME's $DIR not found"
