@@ -1,0 +1,3 @@
+vim
+reattach-to-user-namespace
+git

@@ -26,6 +26,14 @@ if [ $? -eq 0 ]; then
   sudo apt-get -y install `cat requirements/apt-get.txt | tr '\n' ' '`
 fi 
 
+which pip
+if [ $? -eq 0 ]; then
+  #this machine has pip
+  echo "we are going to pip install some things"
+  pip install -r requirements/pip.txt
+fi
+
+
 #run the rest of the install script
 python install.py
 if [ $? -eq 0 ]; then
@@ -37,6 +45,7 @@ if [ $? -eq 0 ]; then
     done
   else
     echo "Main Install Script failed"
+    exit
 fi
 
 if [ -f ~/.ssh/id_rsa.pub ]; then
@@ -46,3 +55,12 @@ else
   echo "We are going to generate a ssh keys"
   ssh-keygen
 fi 
+
+#test if you your git stuffs is configured correctly
+ssh -T git@github.com
+if [ $? -eq 0 ]; then
+  #add code to upgrade your https://remote repo to git@github. So we don't have to worry about adding in our username and what not
+  :
+else
+  echo "you need to copy your ssh key to github to be able to use ssh keys to login"
+fi

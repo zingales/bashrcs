@@ -3,6 +3,7 @@ make
 cmake
 build-essential
 python-dev
+python-virtualenv
 python-pip
 ruby-dev
 vim-nox

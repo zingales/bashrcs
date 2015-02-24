@@ -40,6 +40,8 @@ set encoding=utf-8
 "sytanstic options
 let g:syntastic_always_populate_loc_list = 1 "when you have errors populates the list
 
+"allow control C to exit out of map
+let g:CommandTCancelMap=['<ESC>','<C-c>']
 
 let mapleader=" "
 
