@@ -48,19 +48,3 @@ if [ $? -eq 0 ]; then
     exit
 fi
 
-if [ -f ~/.ssh/id_rsa.pub ]; then
-  :
-else 
-  #this machine doesn't have a key
-  echo "We are going to generate a ssh keys"
-  ssh-keygen
-fi 
-
-#test if you your git stuffs is configured correctly
-ssh -T git@github.com
-if [ $? -eq 0 ]; then
-  #add code to upgrade your https://remote repo to git@github. So we don't have to worry about adding in our username and what not
-  :
-else
-  echo "you need to copy your ssh key to github to be able to use ssh keys to login"
-fi
