@@ -79,7 +79,7 @@ source ~/.bash_functions
 if [ -f ~/.name ]; then 
   name=$(cat ~/.name)
 else
-  name=$(echo 'User')
+  name=$(hostname)
 fi
 
 #PS1='\[$green\][$name:\w]\$\[$reset\] '

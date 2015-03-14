@@ -2,5 +2,7 @@
 # ssh into machine then attaches to session name, if it doesn't exist create it
 # $1 = ssh host
 # $2 = optional tmux session name
+#TODO this script should really check if ttmux exists, if it doesn't it should run the ttmux equivalent 
+# something like which ttmux >> dev/null if true ttmux else bla
 SCREENSESH=${2:-main}
 ssh $1 -t "tmux attach-session -t \"$SCREENSESH\" || tmux new -s \"$SCREENSESH\""

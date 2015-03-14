@@ -1,16 +1,19 @@
-import os
 from os import walk
+import os
 import stat
 import time
 import shutil
 import json
 import subprocess
+import filecmp
 
 #Global Vars
 homedir = os.path.expanduser("~")+"/"
-installdir=os.path.dirname(os.path.abspath(__file__))
-# to_ignore = ['.DS_Store']
-# toMove = [".gitconfig"]
+installdir=os.path.dirname(os.path.abspath(__file__))+"/"
+defaults=os.path.join(installdir, 'defaults')+"/"
+templates=os.path.join(installdir, 'templates') + "/"
+files =os.path.join(installdir, 'files') + "/"
+
 
 #eventually should be seperate file
 cd_install_string = \
@@ -28,9 +31,7 @@ if [ -d $DIR ]; then
   if [[ -a $INST && "$FORCE" = false ]] ; then
       echo "$NAME already installed"
   else
-      {cmd};
-      touch $INST
-      echo "$NAME (re)installed"
+      {cmd} && touch $INST && echo "$NAME (re)installed"
   fi;
 else
   echo "$NAME's $DIR not found"
@@ -42,10 +43,12 @@ fi;
 to_ignore = []
 old_rcs = ""
 
-def _run_cmd(cmd):
+def _run_cmd(cmd, silent=False):
     try:
         return subprocess.check_output(cmd , stderr=subprocess.STDOUT, shell=True)
     except subprocess.CalledProcessError as e:
+        if silent:
+            return None 
         print e.output
         raise
 
@@ -75,6 +78,14 @@ def guarantee_folder(folder):
     if not os.path.exists(folder):
         os.makedirs(folder)
 
+
+def save_if_different(old, new):
+    if not os.path.exists(old):
+        return
+    if filecmp.cmp(old, new):
+        return
+    save(old)
+
 def save(path, isFolder=False):
     guarantee_folder(old_rcs)
     if not os.path.exists(path):
@@ -96,9 +107,10 @@ def install_file(filename, file_set):
     folder = folder.replace("~", homedir)
     guarantee_folder(folder)
     dest = folder+file_set.get("install_name", "."+filename)
+    src = files+filename
     if file_set.get("save_original", True):
-        save(dest)
-    shutil.copy("files/"+filename, dest)
+        save_if_different(dest,src)
+    shutil.copy(src, dest)
 
 def install_folder(foldername, folder_set):
     if folder_set.get("ignore", False) or foldername in to_ignore:
@@ -114,6 +126,28 @@ def install_folder(foldername, folder_set):
     for filename in os.listdir(src_folder):
         shutil.copy(src_folder+"/"+filename, folder+'/'+filename)
 
+def check_bash_profile():
+    if not os.path.exists(homedir+".bash_profile"):
+        if raw_input("You don't have a bash profile would you like to copy over the default one? (y/n)") == 'y':
+            shutil.copy(defaults+"bash_profile", homedir+".bash_profile")
+
+def check_git_config():
+    if None == _run_cmd("git config --global user.name", silent=True):
+        username = raw_input("No git user.NAME found: Setting it now. What would you like it set to?\n")
+        _run_cmd("git config --global user.name "+username)
+    if None == _run_cmd("git config --global user.email", silent=True):
+        email = raw_input("No git user.EMAIL found: Setting it now. What would you like it set to?\n")
+        _run_cmd("git config --global user.email "+email)
+
+def check_name_file():
+    name_path = homedir+ "/.name"
+    if not os.path.exists(name_path):
+        print "do you want to choose what appears before the ~ or allow it to be the hostname?"
+        if "y" == raw_input("y/n"):
+            name = raw_input("type the name then click enter:")
+            with open( name_path, "w") as myfile:
+                myfile.write(name)
+
 def run():
     settings = {}
     files_to_install = []
@@ -127,9 +161,9 @@ def run():
     global old_rcs
     old_rcs = "oldrcs/" + temp_name
 
-    if not os.path.exists(homedir+".bash_profile"):
-        print "Your really gonna need a bash_profile"
-
+    check_name_file()
+    check_bash_profile()
+    check_git_config()
 
     #load file settings
     with open("install_settings.json", 'r') as jsonFile:
@@ -164,7 +198,6 @@ def run():
     for cmds in settings.get("cd_install", []):
         cd_install(cmds["name"], cmds["folder"], cmds["cmd"], cmds.get('force', False), count=count)
         count+=1
-
     ##### end Ensure Git / install ######
 
 if __name__ == "__main__":

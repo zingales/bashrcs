@@ -24,6 +24,7 @@
       {
         "folder" : "~/.gat",
         "cmd" : "cp ex_gat_script ~/scripts/gat",
+        "force": true,
         "name" : "gat"
       },
       {
