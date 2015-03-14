@@ -4,7 +4,7 @@
 
 if [[ $SESSION_TYPE == "remote" ]]; then
 # -c in bsd/osx -q1 in debian
-  cat | nc -c localhost 2224
+  cat | nc -q1 localhost 2224
 else
-  cat | pbcopy
+  cat | xclip -selection clipboard
 fi

@@ -76,6 +76,7 @@ alias v='vim .'
 alias vi='vim --noplugin'
 alias tail='tail -f'
 alias pbcopy=rpbcopy
+alias pbpaste='xclip -selection clipboard -o'
 
 
 #moving around alias
