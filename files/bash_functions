@@ -50,6 +50,14 @@ extract () {
    fi
 }
 
+#https://www.reddit.com/r/Python/comments/2ysd91/what_are_some_nifty_python_snippets_that_you_have/
+#pass in the module you want the path to
+cd_python_module () {
+    cd "$(python -c "import os.path as _, ${1}; \
+            print(_.dirname(_.realpath(${1}.__file__[:-1])))"
+        )"
+}
+
 alias la='ls -a'
 alias ll='ls -l'
 alias lla='ls -al'
@@ -63,11 +71,12 @@ alias gg='git grep '
 #alias gu='git add -u .;gs'
 alias gu='git add -u :/;gs'
 
-#opens vim in folder view in the current folder
+#other 
 alias v='vim .'
-
-#a lighter version of vim
 alias vi='vim --noplugin'
+alias tail='tail -f'
+alias pbcopy=rpbcopy
+
 
 #moving around alias
 alias ..='cd ..'

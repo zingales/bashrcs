@@ -6,7 +6,8 @@ else
   #this machine doesn't have a key
   echo "We are going to generate a ssh key"
   ssh-keygen
-  curl -u "zingales@mit.edu" --data '{"title":\"`hostname`\","key":\"`cat ~/ssh/id_rsa.pub`\"}' https://api.github.com/user/keys
+  DATA=\'\{\"title\"\:\"`hostname`\"\,\"key\"\:\"`cat ~/.ssh/id_rsa.pub`\"\}\'
+  curl -u "zingales" --data $DATA https://api.github.com/user/keys
 
 fi 
 
