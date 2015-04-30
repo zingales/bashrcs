@@ -201,6 +201,8 @@ set nospell
 
 "" ui
 "silent means it doesn't  complain if it doesn't exits
+"there are multiple ones here because if it doenst find solarized it will use
+"gentoo
 silent! colorscheme gentoo
 silent! colorscheme solarized
 
@@ -238,6 +240,8 @@ set expandtab
 set tabstop=2
 set autoindent
 
+"add a colored line to help with line wrap
+set colorcolumn=80
 " modify the word deliminiators
 set iskeyword-=_
 
@@ -272,6 +276,7 @@ function ShowSpaces(...)
   return oldhlsearch
 endfunction
 
+
 function TrimSpaces() range
   let oldhlsearch=ShowSpaces(1)
   execute a:firstline.",".a:lastline."substitute ///gec"
@@ -284,3 +289,5 @@ command -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
 "copy and paste how you want it
 set clipboard=unnamed
 
+let blacklist = ['text']
+autocmd BufWritePre * if index(blacklist, &ft) < 0 | :%s/\s\+$//e
