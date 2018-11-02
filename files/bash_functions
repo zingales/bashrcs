@@ -71,7 +71,7 @@ alias gg='git grep '
 #alias gu='git add -u .;gs'
 alias gu='git add -u :/;gs'
 
-#other 
+#other
 alias v='vim .'
 alias vi='vim --noplugin'
 alias tail='tail -f'
@@ -83,3 +83,6 @@ alias ..='cd ..'
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
+
+#Other shortcuts
+alias o='open .'
